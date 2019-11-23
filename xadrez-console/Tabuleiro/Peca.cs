@@ -7,7 +7,7 @@
         public int QteMovimentos { get; protected set; }
         public Tabuleiro Tab { get; protected set; }
 
-        public Peca(Tabuleiro tab, Cor cor) 
+        public Peca(Tabuleiro tab, Cor cor)
         {
             Posicao = null;
             Tab = tab;
@@ -15,9 +15,31 @@
             QteMovimentos = 0;
         }
 
-        public abstract bool[,] MovimentosPossiveis();
-        public void IncremetarQteMovimentos() {
+        public void IncremetarQteMovimentos()
+        {
             QteMovimentos++;
         }
+
+        public bool ExisteMovimentosPossiveis()
+        {
+            bool[,] matriz = MovimentosPossiveis();
+            foreach (bool celula in matriz)
+            {
+                if (celula)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool PodeMoverPara(Posicao pos)
+        {
+            return MovimentosPossiveis()[pos.Linha, pos.Coluna];
+        }
+
+        public abstract bool[,] MovimentosPossiveis();
+
     }
+
 }
