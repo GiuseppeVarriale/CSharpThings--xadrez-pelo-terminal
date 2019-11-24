@@ -16,6 +16,7 @@ namespace XadrezNS
         {
             return new Posicao(8 - Linha, Coluna - 'a'); // 'a' - 'a' = 0   'b' - 'a' = 1 ( internamente é como um ascii) 
         }
+
         public override string ToString()
         {
             return "" + Coluna + Linha;

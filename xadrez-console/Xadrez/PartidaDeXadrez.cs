@@ -42,6 +42,7 @@ namespace XadrezNS
             Turno++;
             MudaJogador();
         }
+
         public void ValidarPosicaoDeOrigem(Posicao pos)
         {
             if (Tab.Peca(pos) == null)
@@ -63,17 +64,6 @@ namespace XadrezNS
             if (!Tab.Peca(origem).PodeMoverPara(destino))
             {
                 throw new TabuleiroException("Posição de destino inválida!");
-            }
-        }
-        private void MudaJogador()
-        {
-            if (JogadorAtual == Cor.Branca)
-            {
-                JogadorAtual = Cor.Preta;
-            }
-            else
-            {
-                JogadorAtual = Cor.Branca;
             }
         }
 
@@ -109,6 +99,7 @@ namespace XadrezNS
             Tab.ColocarPeca(peca, new PosicaoXadrez(coluna, linha).ToPosicao());
             _pecas.Add(peca);
         }
+
         private void ColocarPecas()
         {
             ColocarNovaPeca('c', 1, new Torre(Tab, Cor.Branca));
@@ -124,8 +115,19 @@ namespace XadrezNS
             ColocarNovaPeca('e', 7, new Torre(Tab, Cor.Preta));
             ColocarNovaPeca('e', 8, new Torre(Tab, Cor.Preta));
             ColocarNovaPeca('d', 8, new Rei(Tab, Cor.Preta));
-
-
         }
+
+        private void MudaJogador()
+        {
+            if (JogadorAtual == Cor.Branca)
+            {
+                JogadorAtual = Cor.Preta;
+            }
+            else
+            {
+                JogadorAtual = Cor.Branca;
+            }
+        }
+
     }
 }
