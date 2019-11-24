@@ -2,15 +2,15 @@
 
 namespace XadrezNS
 {
-    class Torre : Peca
+    class Dama : Peca
     {
-        public Torre(Tabuleiro tab, Cor cor) : base(tab, cor)
+        public Dama(Tabuleiro tab, Cor cor) : base(tab, cor)
         {
         }
 
         public override string ToString()
         {
-            return "T";
+            return "D";
         }
 
         public override bool[,] MovimentosPossiveis()
@@ -63,8 +63,57 @@ namespace XadrezNS
                 {
                     break;
                 }
-                pos.DefinirValores(pos.Linha, pos.Coluna - 1);
+                pos.DefinirValores(pos.Linha, pos.Coluna -1);
             }
+
+            //NW Direction
+            pos.DefinirValores(Posicao.Linha - 1, Posicao.Coluna -1);
+            while (Tab.PosicaoValida(pos) && PodeMover(pos))
+            {
+                matriz[pos.Linha, pos.Coluna] = true;
+                if (Tab.Peca(pos) != null && Tab.Peca(pos).Cor != Cor)
+                {
+                    break;
+                }
+                pos.DefinirValores(pos.Linha - 1, pos.Coluna - 1);
+            }
+
+            //NE Direction
+            pos.DefinirValores(Posicao.Linha - 1, Posicao.Coluna + 1);
+            while (Tab.PosicaoValida(pos) && PodeMover(pos))
+            {
+                matriz[pos.Linha, pos.Coluna] = true;
+                if (Tab.Peca(pos) != null && Tab.Peca(pos).Cor != Cor)
+                {
+                    break;
+                }
+                pos.DefinirValores(pos.Linha - 1, pos.Coluna +1);
+            }
+
+            //SE Direction
+            pos.DefinirValores(Posicao.Linha + 1, Posicao.Coluna + 1);
+            while (Tab.PosicaoValida(pos) && PodeMover(pos))
+            {
+                matriz[pos.Linha, pos.Coluna] = true;
+                if (Tab.Peca(pos) != null && Tab.Peca(pos).Cor != Cor)
+                {
+                    break;
+                }
+                pos.DefinirValores(pos.Linha + 1, pos.Coluna + 1);
+            }
+
+            //SW Direction
+            pos.DefinirValores(Posicao.Linha +1, Posicao.Coluna - 1);
+            while (Tab.PosicaoValida(pos) && PodeMover(pos))
+            {
+                matriz[pos.Linha, pos.Coluna] = true;
+                if (Tab.Peca(pos) != null && Tab.Peca(pos).Cor != Cor)
+                {
+                    break;
+                }
+                pos.DefinirValores(pos.Linha + 1, pos.Coluna - 1);
+            }
+
             return matriz;
         }
 
