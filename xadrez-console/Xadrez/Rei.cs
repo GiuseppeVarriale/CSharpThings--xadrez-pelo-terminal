@@ -13,12 +13,6 @@ namespace XadrezNS
             return "R"; 
         }
 
-        private bool PodeMover(Posicao pos)
-        {
-            Peca p = Tab.Peca(pos);
-            return p == null || p.Cor != Cor;
-        }
-
         public override bool[,] MovimentosPossiveis()
         {
             bool[,] matriz = new bool[Tab.Linhas, Tab.Colunas];
@@ -78,6 +72,11 @@ namespace XadrezNS
                 matriz[pos.Linha, pos.Coluna] = true;
             }
             return matriz;
+        }
+        private bool PodeMover(Posicao pos)
+        {
+            Peca p = Tab.Peca(pos);
+            return p == null || p.Cor != Cor;
         }
     }
 }
