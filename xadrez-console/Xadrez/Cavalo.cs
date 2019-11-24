@@ -19,49 +19,42 @@ namespace XadrezNS
             Posicao pos = new Posicao(0, 0);
 
             //NE Direction
-            pos.DefinirValores(Posicao.Linha - 1, Posicao.Coluna + 1);
+            pos.DefinirValores(Posicao.Linha - 1, Posicao.Coluna + 2);
             if (Tab.PosicaoValida(pos) && PodeMover(pos))
             {
                 matriz[pos.Linha, pos.Coluna] = true;
             }
 
             //NE Direction 2
-            pos.DefinirValores(Posicao.Linha - 2, Posicao.Coluna + 2);
+            pos.DefinirValores(Posicao.Linha - 2, Posicao.Coluna + 1);
             if (Tab.PosicaoValida(pos) && PodeMover(pos))
             {
                 matriz[pos.Linha, pos.Coluna] = true;
             }
 
             //NW Direction
-            pos.DefinirValores(Posicao.Linha - 2, Posicao.Coluna - 1);
+            pos.DefinirValores(Posicao.Linha - 1, Posicao.Coluna - 2);
             if (Tab.PosicaoValida(pos) && PodeMover(pos))
             {
                 matriz[pos.Linha, pos.Coluna] = true;
             }
              
             //NW Direction 2 
-            pos.DefinirValores(Posicao.Linha - 1, Posicao.Coluna - 2);
+            pos.DefinirValores(Posicao.Linha - 2, Posicao.Coluna - 1);
             if (Tab.PosicaoValida(pos) && PodeMover(pos))
             {
                 matriz[pos.Linha, pos.Coluna] = true;
             }
 
             //SE Direction
-            pos.DefinirValores(Posicao.Linha + 2, Posicao.Coluna + 1);
-            if (Tab.PosicaoValida(pos) && PodeMover(pos))
-            {
-                matriz[pos.Linha, pos.Coluna] = true;
-            }
-
-            //SE Direction 2
             pos.DefinirValores(Posicao.Linha + 1, Posicao.Coluna + 2);
             if (Tab.PosicaoValida(pos) && PodeMover(pos))
             {
                 matriz[pos.Linha, pos.Coluna] = true;
             }
 
-            //SW Direction
-            pos.DefinirValores(Posicao.Linha + 2, Posicao.Coluna - 1);
+            //SE Direction 2
+            pos.DefinirValores(Posicao.Linha + 2, Posicao.Coluna + 1);
             if (Tab.PosicaoValida(pos) && PodeMover(pos))
             {
                 matriz[pos.Linha, pos.Coluna] = true;
@@ -69,6 +62,13 @@ namespace XadrezNS
 
             //SW Direction
             pos.DefinirValores(Posicao.Linha + 1, Posicao.Coluna - 2);
+            if (Tab.PosicaoValida(pos) && PodeMover(pos))
+            {
+                matriz[pos.Linha, pos.Coluna] = true;
+            }
+
+            //SW Direction 2
+            pos.DefinirValores(Posicao.Linha + 2, Posicao.Coluna - 1);
             if (Tab.PosicaoValida(pos) && PodeMover(pos))
             {
                 matriz[pos.Linha, pos.Coluna] = true;
