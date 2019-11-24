@@ -39,7 +39,7 @@ namespace XadrezNS
 
         }
 
-        public void DesfazMovimento(Posicao origem , Posicao destino, Peca pecaCapturada)
+        public void DesfazMovimento(Posicao origem, Posicao destino, Peca pecaCapturada)
         {
             Peca p = Tab.RetirarPeca(destino);
             p.DecrementarQteMovimentos();
@@ -71,8 +71,15 @@ namespace XadrezNS
                 Xeque = false;
             }
 
-            Turno++;
-            MudaJogador();
+            if (TestaXequeMate(Adversaria(JogadorAtual)))
+            {
+                Terminada = true;
+            }
+            else
+            {
+                Turno++;
+                MudaJogador();
+            }
         }
 
         public void ValidarPosicaoDeOrigem(Posicao pos)
@@ -149,6 +156,38 @@ namespace XadrezNS
                 }
             }
             return false;
+        }
+
+        public bool TestaXequeMate(Cor cor)
+        {
+            if (!EstaEmXeque(cor))
+            {
+                return false;
+            }
+            foreach (Peca x in PecasCorEmJogo(cor))
+            {
+                bool[,] matrizMovimentosPossiveis = x.MovimentosPossiveis();
+                for (int i = 0; i < Tab.Linhas; i++)
+                {
+                    for (int j = 0; j < Tab.Colunas; j++)
+                    {
+                        if (matrizMovimentosPossiveis[i, j])
+                        {
+                            Posicao origem = x.Posicao;
+                            Posicao destino = new Posicao(i, j);
+                            Peca pecaCapturada = ExecutaMovimento(origem, destino);
+                            bool testeXeque = EstaEmXeque(cor);
+                            DesfazMovimento(origem, destino, pecaCapturada);
+                            if (!testeXeque)
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                }
+
+            }
+            return true;
         }
 
         private void ColocarPecas()
